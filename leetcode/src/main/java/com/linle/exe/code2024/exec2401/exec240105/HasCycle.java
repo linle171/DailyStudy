@@ -3,7 +3,7 @@ package com.linle.exe.code2024.exec240105;
 import java.util.List;
 
 /**
- * @description: 141. 环形链表  simple
+ * @description: 141题. 环形链表  simple
  * @author: chendeli
  * @date: 2024-01-05 10:33
  */
@@ -29,6 +29,11 @@ public class HasCycle {
         }
     }
 
+    /**
+     * 使用快慢指针，若是存在环，总会相遇
+     * @param head
+     * @return
+     */
     public boolean hasCycle(ListNode head) {
         if(head == null){
             return false;
@@ -37,7 +42,9 @@ public class HasCycle {
         ListNode tail = head;
         while( (tail = tail.next) != null && pre != tail  ){
             pre = pre.next;
-            tail = tail.next;
+            if(tail.next != null) {
+                tail = tail.next;
+            }
         }
         if(tail == null){
             return false;
