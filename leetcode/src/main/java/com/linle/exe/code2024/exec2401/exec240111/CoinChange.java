@@ -1,6 +1,7 @@
 package com.linle.exe.code2024.exec2401.exec240111;
 
 import org.junit.Test;
+import org.springframework.util.StopWatch;
 
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -40,8 +41,13 @@ public class CoinChange {
      */
     @Test
     public void test() {
-        int[] i = new int[]{186,419,83,408};
-        int i1 = coinChange(i, 6249);
+        int[] i = new int[]{411,412,413,414,415,416,417,418,419,420,421,422};
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        int i1 = coinChange1(i, 9864);
+        stopWatch.stop();
+        double totalTimeSeconds = stopWatch.getTotalTimeSeconds();
+        System.out.println(totalTimeSeconds);
         System.out.println(i1);
     }
 
@@ -52,19 +58,50 @@ public class CoinChange {
      * @param amount
      * @return
      */
+    int minChangeCount = Integer.MAX_VALUE;
     public int coinChange(int[] coins, int amount) {
         if (amount == 0) {
             return 0;
         }
         Arrays.sort(coins);
-
-        return getChange(coins,amount,coins.length);
+        getChange(coins,amount,0, coins.length-1);
+        return minChangeCount == Integer.MAX_VALUE ? -1 : minChangeCount;
     }
 
-    private int getChange(int[] coins, int amount,int index) {
-        if(amount == 0){
-
+    private void getChange(int[] coins, int amount,int count,int l) {
+        for (int i = l; i >= 0 ; i--) {
+            if(count >= minChangeCount-1){
+                return;
+            }
+            if(amount>=coins[i]) {
+                amount -= coins[i];
+                if(amount ==  0 ){
+                    minChangeCount = count + 1;
+                    break;
+                }
+                getChange(coins, amount, count + 1,i);
+                amount += coins[i];
+            }
         }
-        return 0;
+    }
+
+    /**
+     * dg解决   dp(n) = min(dp(n),dp(n-x)+1)
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChange1(int[] coins, int amount) {
+        int[] sub = new int[amount+1];
+        Arrays.fill(sub, amount+1);
+        sub[0] = 0;
+        for (int i = 0; i < sub.length; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if(i - coins[j] >= 0) {
+                    sub[i] = Math.min(sub[i], sub[i - coins[j]]+1) ;
+                }
+            }
+        }
+        return sub[amount];
     }
 }
