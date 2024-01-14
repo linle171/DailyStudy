@@ -3,9 +3,7 @@ package com.linle.exe.code2024.exec2401.exec240111;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @description: 120. 三角形最小路径和 middle
@@ -78,6 +76,7 @@ public class MinimumTotal {
             list[0] = list[0] + temp.get(0);
         }
         return Arrays.stream(list).min().getAsInt();
+
     }
 
 }
