@@ -40,6 +40,6 @@ public class SubarraySum {
      * @return
      */
     public int subarraySum(int[] nums, int k) {
-
+        return 0;
     }
 }
