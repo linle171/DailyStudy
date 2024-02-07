@@ -1,4 +1,6 @@
-package com.linle.exe.code2024.exec240105;
+package com.linle.exe.code2024.exec2401.exec240105;
+
+import com.linle.exe.common.ListNode;
 
 import java.util.List;
 
@@ -20,15 +22,6 @@ public class HasCycle {
      *
      * 进阶：你能用 O(1)（即，常量）内存解决此问题吗？
      */
-    class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
     /**
      * 使用快慢指针，若是存在环，总会相遇
      * @param head
@@ -50,5 +43,21 @@ public class HasCycle {
             return false;
         }
         return true;
+    }
+
+    public boolean hasCycle1(ListNode head) {
+        if(head == null){
+            return false;
+        }
+        ListNode pre = head;
+        ListNode tail = head;
+        while( tail.next != null && tail.next.next != null  ){
+            tail = tail.next.next;
+            pre = pre.next;
+            if(tail == pre){
+                return true;
+            }
+        }
+        return false;
     }
 }

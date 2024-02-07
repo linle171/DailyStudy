@@ -3,6 +3,7 @@ package com.linle.exe.code2024.exec2401.exec240111;
 import com.linle.exe.code2024.exec2401.exec240108.MyAtoi;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.PrimitiveIterator;
 
 /**
@@ -37,11 +38,23 @@ public class MaxProduct {
      */
     @Test
     public void test(){
-        int[] i = new int[]{-2,-3};
-        int i1 = maxProduct(i);
+        int[] i = new int[]{1,2,-1,-2,2,1,-2,1,4,-5,4};
+        int i1 = maxProduct1(i);
         System.out.println(i1);
     }
+    public int maxProduct1(int[] nums) {
+        int length = nums.length;
+        int[] maxF = Arrays.copyOf(nums,length);
+        int[] minF = Arrays.copyOf(nums,length);
+        int max = maxF[0];
+        for (int i = 1; i <length; i++) {
+            maxF[i] =Math.max(Math.max(nums[i]*maxF[i-1],nums[i]),nums[i]*minF[i-1]);
+            minF[i] =Math.min(Math.min(nums[i]*minF[i-1],nums[i]),nums[i]*maxF[i-1]);
+            max= Math.max(maxF[i],max);
+        }
+        return max;
 
+    }
 
     /**
      * 解题思路： 由于有负数，需要维护一个最大值集合和最小值集合

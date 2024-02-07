@@ -1,5 +1,6 @@
 package com.linle.exe.code2023.exec1216;
 
+import com.linle.exe.common.ListNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,22 +12,6 @@ import java.util.ArrayList;
  */
 public class C19Test {
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 题目：

@@ -1,12 +1,10 @@
-package com.linle.exe.code2024.exec240106;
+package com.linle.exe.code2024.exec2401.exec240106;
 
-import cn.hutool.http.webservice.SoapClient;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
-import java.util.Vector;
 
 /**
  * @description: 20. 有效的括号 simple

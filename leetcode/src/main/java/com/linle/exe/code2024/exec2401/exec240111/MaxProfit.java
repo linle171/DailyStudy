@@ -36,8 +36,9 @@ public class MaxProfit {
      */
     @Test
     public void test(){
-        int[] i = new int[]{7,1,5,3,6,4};
-        int i1 = maxProfit(i);
+//        int[] i = new int[]{7,1,5,3,6,4};
+        int[] i = new int[]{1,2};
+        int i1 = maxProfit1(i);
         System.out.println(i1);
     }
 
@@ -51,12 +52,27 @@ public class MaxProfit {
         if(prices.length == 0){
             return 0;
         }
-        int[] profit = new int[prices.length];
-        profit[0] = 0;
+        int profit = 0;
         int max = 0;
-        for (int i = 1; i < profit.length; i++) {
-            profit[i] = Math.max(0,profit[i-1] + prices[i] - prices[i-1]);
-            max = Math.max(max,profit[i]);
+        for (int i = 1; i < prices.length; i++) {
+            profit = Math.max(0,profit + prices[i] - prices[i-1]);
+            max = Math.max(max,profit);
+        }
+        return max;
+    }
+
+    public int maxProfit1(int[] prices) {
+        if(prices.length == 0){
+            return 0;
+        }
+        int profit = Integer.MAX_VALUE;
+        int max = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if(profit > prices[i]){
+                profit = prices[i];
+            }else if(prices[i] - profit > max){
+                max = prices[i] - profit;
+            }
         }
         return max;
     }

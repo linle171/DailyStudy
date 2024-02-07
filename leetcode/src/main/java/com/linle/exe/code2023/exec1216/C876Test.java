@@ -1,5 +1,6 @@
 package com.linle.exe.code2023.exec1216;
 
+import com.linle.exe.common.ListNode;
 import org.junit.Test;
 
 /**
@@ -9,22 +10,6 @@ import org.junit.Test;
  */
 public class C876Test {
 
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 给定一个头结点为 head 的非空单链表，返回链表的中间结点。

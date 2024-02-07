@@ -48,11 +48,42 @@ public class C300 {
          *
          * 方法二：动归 + 二分查找
          */
-        int[] nums = new int[]{3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12};
+//        int[] nums = new int[]{3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12};
+        int[] nums = new int[]{0,1,0,3,2,3};
+//        [0,1,0,3,2,3]
 
 //        int result = lengthOfLIS1(nums);
         int result = lengthOfLIS2(nums);
         System.out.println(result);
+    }
+
+    int lengthOfLIS3(int[] nums) {
+        int length = nums.length;
+        int[] status = new int[length];
+        int[] lenCount = new int[length];
+        status[0] = 0;
+        lenCount[0] = 1;
+        int maxLen = 1;
+        for (int i = 1; i < nums.length; i++) {
+            lenCount[i] =1;
+            status[i] = i;
+            int j =i-1;
+            if (nums[i] > nums[j]) {
+                status[i] = j;
+                lenCount[i] +=  lenCount[j];
+            }else {
+                while (j != status[j]) {
+                    j = status[j];
+                    if(nums[i] > nums[j]){
+                        status[i] = j;
+                        lenCount[i] +=  lenCount[j];
+                        break;
+                    }
+                }
+            }
+            maxLen = Math.max(maxLen, lenCount[i]);
+        }
+        return maxLen;
     }
 
     /*
@@ -62,7 +93,7 @@ public class C300 {
      */
     private int lengthOfLIS2(int[] nums) {
         int length = nums.length;
-        int[] lenStatus = new int[length];
+        int[] lenStatus = new int[length+1];
         lenStatus[1] = nums[0];
         int len = 1;
         for (int i = 1; i < nums.length; i++) {
@@ -86,7 +117,6 @@ public class C300 {
     }
 
     int lengthOfLIS1(int[] nums) {
-        BitSet bitSet = new BitSet(10);
         int length = nums.length;
         int[] status = new int[length];
         status[0] = 1;

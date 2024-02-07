@@ -95,4 +95,5 @@ public class IsValidBST {
         Boolean r = preorderTraversal(root.right);
         return l && r;
     }
+
 }

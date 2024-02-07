@@ -1,4 +1,4 @@
-package com.linle.exe.code2024.exec240104;
+package com.linle.exe.code2024.exec2401.exec240104;
 
 /**
  * @description: 169题. 多数元素

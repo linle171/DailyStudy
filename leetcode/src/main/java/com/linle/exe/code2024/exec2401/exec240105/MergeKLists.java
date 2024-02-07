@@ -1,5 +1,6 @@
-package com.linle.exe.code2024.exec240105;
+package com.linle.exe.code2024.exec2401.exec240105;
 
+import com.linle.exe.common.ListNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -47,22 +48,7 @@ public class MergeKLists {
      * lists[i] 按 升序 排列
      * lists[i].length 的总和不超过 10^4
      */
-    public class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 归并排序

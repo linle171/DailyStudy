@@ -21,7 +21,7 @@ public class CoinChange {
      * <p>
      * 示例 1：
      * <p>
-     * 输入：coins = [1, 2, 5], amount = 11
+     * 输入：coins = [1, 2, 5], amount = 11   dp(n) = Min(dp(n-1),min)
      * 输出：3
      * 解释：11 = 5 + 5 + 1
      * 示例 2：
@@ -36,15 +36,15 @@ public class CoinChange {
      * 提示：
      * <p>
      * 1 <= coins.length <= 12
-     * 1 <= coins[i] <= 231 - 1
+     * 1 <= coins[i] <= 2^31 - 1
      * 0 <= amount <= 10^4
      */
     @Test
     public void test() {
-        int[] i = new int[]{411,412,413,414,415,416,417,418,419,420,421,422};
+        int[] i = new int[]{2};
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        int i1 = coinChange1(i, 9864);
+        int i1 = coinChange1(i, 3);
         stopWatch.stop();
         double totalTimeSeconds = stopWatch.getTotalTimeSeconds();
         System.out.println(totalTimeSeconds);
@@ -59,27 +59,28 @@ public class CoinChange {
      * @return
      */
     int minChangeCount = Integer.MAX_VALUE;
+
     public int coinChange(int[] coins, int amount) {
         if (amount == 0) {
             return 0;
         }
         Arrays.sort(coins);
-        getChange(coins,amount,0, coins.length-1);
+        getChange(coins, amount, 0, coins.length - 1);
         return minChangeCount == Integer.MAX_VALUE ? -1 : minChangeCount;
     }
 
-    private void getChange(int[] coins, int amount,int count,int l) {
-        for (int i = l; i >= 0 ; i--) {
-            if(count >= minChangeCount-1){
+    private void getChange(int[] coins, int amount, int count, int l) {
+        for (int i = l; i >= 0; i--) {
+            if (count >= minChangeCount - 1) {
                 return;
             }
-            if(amount>=coins[i]) {
+            if (amount >= coins[i]) {
                 amount -= coins[i];
-                if(amount ==  0 ){
+                if (amount == 0) {
                     minChangeCount = count + 1;
                     break;
                 }
-                getChange(coins, amount, count + 1,i);
+                getChange(coins, amount, count + 1, i);
                 amount += coins[i];
             }
         }
@@ -87,13 +88,14 @@ public class CoinChange {
 
     /**
      * dg解决   dp(n) = min(dp(n),dp(n-x)+1)
+     *
      * @param coins
      * @param amount
      * @return
      */
     public int coinChange1(int[] coins, int amount) {
-        int[] sub = new int[amount+1];
-        Arrays.fill(sub, amount+1);
+        int[] sub = new int[amount + 1];
+        Arrays.fill(sub, amount + 1);
         sub[0] = 0;
         for (int i = 0; i < sub.length; i++) {
             for (int j = 0; j < coins.length; j++) {
@@ -102,6 +104,13 @@ public class CoinChange {
                 }
             }
         }
-        return sub[amount];
+        return sub[amount] == amount +1 ? -1:sub[amount];
+//        for (int i = 0; i < coins.length; i++) {
+//            int num = coins[i];
+//            for (int j = num; j < amount + 1; j++) {
+//                sub[j] = Math.min(sub[j], sub[j - num] + 1);
+//            }
+//        }
+//        return sub[amount] == amount +1 ? -1:sub[amount];
     }
 }
