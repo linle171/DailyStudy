@@ -2,6 +2,8 @@ package com.linle.exe.code2024.exec2402.exec240207;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @description: 1143. 最长公共子序列 middle
  * @author: chendeli
@@ -41,6 +43,16 @@ public class LongestCommonSubsequence {
     public void test(){}
 
     public int longestCommonSubsequence(String text1, String text2) {
+        String l1 = text1.length() > text2.length() ? text1 : text2;
+        String l2 = text1.length() > text2.length() ? text2 : text1;
+        int[] isVisit = new int[l2.length()];
+        int[] remark = new int[26];
+        Arrays.fill(isVisit,-1);
+        for (char c : l2.toCharArray()) {
+            remark[c-'a']++;
+
+        }
+
 
 
 
