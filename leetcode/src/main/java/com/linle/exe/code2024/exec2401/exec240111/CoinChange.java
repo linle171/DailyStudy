@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.util.StopWatch;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.logging.Level;
 
 /**
@@ -41,6 +42,8 @@ public class CoinChange {
      */
     @Test
     public void test() {
+        StringBuffer sb = new StringBuffer();
+        StringBuilder si = new StringBuilder();
         int[] i = new int[]{2};
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
