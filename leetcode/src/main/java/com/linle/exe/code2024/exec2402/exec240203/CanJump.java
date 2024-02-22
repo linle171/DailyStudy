@@ -89,12 +89,12 @@ public class CanJump {
         int dis = 0;
         for (int i = 1; i < nums.length; i++) {
             int num = nums[i-1];
-            dis = Math.max(dis,num);
-            if(dis > num + i){
-                continue;
-            }
+            dis = Math.max(dis,num + i);
             for (int j = i; j < Math.min( num+i,nums.length); j++) {
               result[j] = result[j] == null ? result[i-1] + 1 : Math.min( result[j],result[i-1] + 1);
+            }
+            if(dis > nums.length-1){
+                return result[nums.length-1];
             }
         }
         return result[nums.length-1];
