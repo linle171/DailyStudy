@@ -67,4 +67,25 @@ public class Rotate {
         nums[0] = r;
     }
 
+
+    public void rotate1(int[] nums, int k) {
+        int len = nums.length;
+        k = k % len;
+        swapNum(nums,0,len-1-k);
+        swapNum(nums,len-k,len-1);
+        swapNum(nums,0,len-1);
+    }
+
+    private void swapNum(int[] nums,int l,int r) {
+        while (l < r){
+            int t = nums[l]^nums[r];
+            nums[l] = nums[l]^t;
+            nums[r] = nums[r]^t;
+            r--;l++;
+        }
+    }
+
+
+
+
 }

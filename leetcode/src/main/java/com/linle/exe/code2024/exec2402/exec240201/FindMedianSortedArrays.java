@@ -49,31 +49,7 @@ public class FindMedianSortedArrays {
         int lLen = nums1.length;
         int rLen = nums2.length;
 
-        int lL = 0, lR = lLen - 1;
-        int rL = 0, rR = rLen - 1;
-
-        while (lL <= lR && rL <= rR) {
-            int lMid = lL + ((lR - lL) >> 1);
-            int rMid = rL + ((rR - rL) >> 1);
-            if (nums1[lMid] > nums2[rMid]) {
-                lR = lMid - 1;
-                lL = lR - Math.min(rR - rMid, lMid - lL);
-
-                rL = rMid + 1;
-                rR = rMid + Math.min(rR - rMid, lMid - lL);
-            } else if (nums1[lMid] < nums2[rMid]) {
-                lL = lMid + 1;
-                lR = lMid + Math.min(lR - lMid, rMid - rL);
-
-                rL = rMid - 1;
-                rR = rR - Math.min(lR - lMid, rMid - rL);
-
-            } else {
-                return nums1[lMid];
-            }
-        }
-
-        return (nums1[(lR + lL) >> 1] + nums2[(rR + rL) >> 1]) / 2.0;
+        return 0.0;
     }
 
 

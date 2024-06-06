@@ -50,10 +50,24 @@ public class Jump {
     boolean[] isVisit ;
     int min = Integer.MAX_VALUE;
     public int canJump(int[] nums) {
-        isVisit = new boolean[nums.length];
-        jump(nums,0,0);
+        int n = nums.length;
+        int steps = 0;
+        int end = 0;
+        int max = 0;
+        for (int i = 0; i < n - 1; i++) {
+            max = Math.max(max, i+nums[i]);
+            if (i == end){
+                end = max;
+                steps++;
+            }
+        }
 
-        return min;
+        return steps;
+
+//        isVisit = new boolean[nums.length];
+//        jump(nums,0,0);
+//
+//        return min;
     }
 
 
