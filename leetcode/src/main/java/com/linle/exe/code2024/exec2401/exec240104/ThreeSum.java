@@ -1,5 +1,7 @@
 package com.linle.exe.code2024.exec2401.exec240104;
 
+import com.google.common.collect.Lists;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.Test;
 
 import java.util.*;
@@ -20,10 +22,23 @@ public class ThreeSum {
      */
     @Test
     public void test() {
+//        Map<Integer,String> map = new HashMap<>();
+//        ArrayList<@Nullable Object> objects = Lists.newArrayList();
+//
+//        int[] ints = {1, 2, 5, 3};
+//
+//        StringBuffer sb= new StringBuffer();
+//        sb.append(1);
+//        sb.deleteCharAt(sb.length());
+//        System.out.println(sb);
+//
+//        threeSum(ints);
+//
 
-        int[] ints = {1, 2, 5, 3};
 
-        threeSum(ints);
+        List<Integer> l = Lists.newArrayList(1,2,3,4,5,6,7,8,9);
+        List<List<Integer>> partition = Lists.partition(l, 3);
+        System.out.println(partition);
     }
 
     /**

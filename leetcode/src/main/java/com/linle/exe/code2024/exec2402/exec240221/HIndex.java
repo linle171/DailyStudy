@@ -4,9 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import org.junit.Test;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -40,11 +38,10 @@ public class HIndex {
      */
     @Test
     public void test(){
-        List<String> l = new ArrayList<>();
-        l.add("1");
-        List<String> collect = l.stream().filter(x -> StrUtil.equals(x, "2")).collect(Collectors.toList());
-        System.out.println(collect.size());
         hIndex(new int[]{1});
+        Set<Integer> set =
+                new HashSet<>();
+
     }
 
     /**
@@ -57,14 +54,9 @@ public class HIndex {
         Arrays.sort(citations);
         int len = citations.length;
         int count = 0;
-        for (int i = 0; i < citations.length; i++) {
-            if(citations[i] > 0) {
-                if (citations[i] <=  len - i) {
-                    count = Math.max(count, citations[i]);
-                }else {
-                    count++;
-                }
-
+        for (int i = len-1; i >= 0; i--) {
+            if(citations[i] > 0 && citations[i] >= count){
+                count++;
             }
         }
         return count;
